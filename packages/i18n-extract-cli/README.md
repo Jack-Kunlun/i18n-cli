@@ -26,7 +26,7 @@
 ## 安装
 
 ```
-npm i @ifreeovo/i18n-extract-cli -g
+npm i @xbd/i18n-extract-cli -g
 ```
 
 ## 使用
@@ -163,6 +163,9 @@ module.exports = {
   // currentFileKeyMap: 当前文件提取到的key-value
   // currentFilePath: 当前遍历的文件路径
   adjustKeyMap(allKeyValue, currentFileKeyMap, currentFilePath) {return allKeyValue}, // 对提取结构进行二次处理
+  // 参数：
+  // keyMap：增量的中文 key, 类型为string[]，示例[ '新增的内容', '新增的内容2', '新增的内容3', '新增的内容4', '新增的内容5' ]
+  sendToRemote: async (keyMap) => { return "发送成功" }, // 将增量的中文 key 发送到远端服务器
 }
 ```
 

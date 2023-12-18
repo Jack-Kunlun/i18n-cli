@@ -4,6 +4,7 @@
 # 介绍
 
 该项目是一个支持将中文替换成 i18n 国际化标记，并支持自动翻译的命令行工具
+基于 i18n-extract-cli 项目做的二开，源地址为：[github](https://github.com/IFreeOvO/i18n-cli/tree/master)
 
 ## 流程设计
 
@@ -25,16 +26,17 @@
 - [x] 自定义 i18n 工具的方法名
 - [x] 自定义 i18n 第三方包的导入
 - [x] 自定义忽略提取的方法
+- [x] 发送增量信息至远端服务器
 
 ## 安装
 
 ```
-npm i @ifreeovo/i18n-extract-cli -g
+npm i @xbd/i18n-extract-cli -g
 ```
 
 ## 使用文档
 
-[点击这里](https://github.com/IFreeOvO/i18n-cli/tree/master/packages/i18n-extract-cli)
+[点击这里](https://github.com/Jack-Kunlun/i18n-cli/tree/master/packages/i18n-extract-cli)
 
 ## 转换效果示例
 
