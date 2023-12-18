@@ -72,7 +72,6 @@ function enhanceErrorMessages() {
     if (unknownOption.startsWith('--')) {
       suggestCommands(unknownOption.slice(2, unknownOption.length))
     }
-    console.log()
     process.exit(1)
   }
 }

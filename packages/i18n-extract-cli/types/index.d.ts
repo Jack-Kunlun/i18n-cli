@@ -100,6 +100,11 @@ export type Config = {
   excelPath: string
   exportExcel: boolean
   adjustKeyMap?: AdjustKeyMap
+  /**
+   * 是否将增量结果发送至远程
+   * @returns 请求结果
+   */
+  sendToRemote?: (keyMap: string[]) => Promise<void>
 } & TranslateConfig
 
 export interface CommandOptions {
@@ -113,4 +118,9 @@ export interface CommandOptions {
   skipTranslate?: boolean
   excelPath?: string
   exportExcel?: boolean
+  /**
+   * 是否将增量结果发送至远程
+   * @returns 请求结果
+   */
+  sendToRemote?: () => Promise<void>
 }

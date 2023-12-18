@@ -223,10 +223,12 @@ function formatCode(code: string, ext: string, prettierConfig: PrettierConfig): 
 
 export default async function (options: CommandOptions) {
   let i18nConfig = getI18nConfig(options)
+
   if (!i18nConfig.skipTranslate) {
     const translationConfig = await getTranslationConfig()
     i18nConfig = merge(i18nConfig, translationConfig)
   }
+
   // 全局缓存脚手架配置
   StateManager.setToolConfig(i18nConfig)
 
@@ -247,8 +249,11 @@ export default async function (options: CommandOptions) {
   let oldPrimaryLang: Record<string, string> = {}
   const primaryLangPath = getAbsolutePath(process.cwd(), localePath)
   oldPrimaryLang = getLang(primaryLangPath)
+
+  log.info('正在提取中文...')
+
   if (!skipExtract) {
-    log.info('正在转换中文，请稍等...')
+    log.info(`当前提取目录为：${input}`)
 
     const sourceFilePaths = getSourceFilePaths(input, exclude)
     const bar = new cliProgress.SingleBar(
@@ -257,22 +262,30 @@ export default async function (options: CommandOptions) {
       },
       cliProgress.Presets.shades_classic
     )
+
+    log.info(`共找到${sourceFilePaths.length}个文件`)
+
     const startTime = new Date().getTime()
+
     bar.start(sourceFilePaths.length, 0)
     sourceFilePaths.forEach((sourceFilePath) => {
       log.verbose(`正在提取文件中的中文:`, sourceFilePath)
+
       const sourceCode = fs.readFileSync(sourceFilePath, 'utf8')
       const ext = path.extname(sourceFilePath).replace('.', '') as FileExtension
       Collector.resetCountOfAdditions()
       Collector.setCurrentCollectorPath(sourceFilePath)
       const { code } = transform(sourceCode, ext, rules, sourceFilePath)
+
       log.verbose(`完成中文提取和语法转换:`, sourceFilePath)
 
       // 只有文件提取过中文，或文件规则forceImport为true时，才重新写入文件
       if (Collector.getCountOfAdditions() > 0 || rules[ext].forceImport) {
         const stylizedCode = formatCode(code, ext, i18nConfig.prettier)
         const outputPath = getOutputPath(input, output, sourceFilePath)
+
         fs.writeFileSync(outputPath, stylizedCode, 'utf8')
+
         log.verbose(`生成文件:`, outputPath)
       }
 
@@ -289,6 +302,19 @@ export default async function (options: CommandOptions) {
 
       bar.increment()
     })
+
+    // 是否将提取的中文发送到远程
+    if (i18nConfig.sendToRemote) {
+      try {
+        const arr = Object.keys(Collector.getKeyMap())
+        await i18nConfig.sendToRemote(arr)
+
+        log.success(`发送到远程成功`)
+      } catch (e) {
+        log.error(`发送到远程失败:`, e)
+      }
+    }
+
     // 增量转换时，保留之前的提取的中文结果
     if (i18nConfig.incremental) {
       const newkeyMap = merge(oldPrimaryLang, Collector.getKeyMap())
@@ -303,7 +329,6 @@ export default async function (options: CommandOptions) {
     log.info(`耗时${((endTime - startTime) / 1000).toFixed(2)}s`)
   }
 
-  console.log('') // 空一行
   if (!skipTranslate) {
     await translate(localePath, locales, oldPrimaryLang, {
       translator: i18nConfig.translator,
