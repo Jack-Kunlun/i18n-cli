@@ -1,4 +1,4 @@
-# @ifreeovo/i18n-extract-cli
+# @xbd/i18n-extract-cli
 
 ## 3.3.3
 
