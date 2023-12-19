@@ -51,5 +51,6 @@
     "commitizen": {
       "path": "cz-git"
     }
-  }
+  },
+  "name": ""
 }
