@@ -1,13 +1,7 @@
 # @xbd/translate-utils
 
-## 1.1.0
-
-### Minor Changes
-
-- ee2bcec: 支持百度翻译
-
-## 1.0.0
+## 2.0.0
 
 ### Major Changes
 
-- 73a2b9c: 支持有道翻译和谷歌翻译
+- 基于 IFreeOvO/i18n-cli 项目增加了发送翻译到服务器功能，保留原有全部功能配置

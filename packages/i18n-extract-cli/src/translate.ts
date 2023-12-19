@@ -1,5 +1,5 @@
 import fs from 'fs-extra'
-import { googleTranslate, youdaoTranslate, baiduTranslate } from '@ifreeovo/translate-utils'
+import { googleTranslate, youdaoTranslate, baiduTranslate } from '@xbd/translate-utils'
 import type { TranslateConfig, StringObject, translatorType } from '../types'
 import { getAbsolutePath } from './utils/getAbsolutePath'
 import log from './utils/log'
