@@ -1,5 +1,5 @@
 {
-  "name": "xbd-translate-utils",
+  "name": "@xbd/translate-utils",
   "version": "1.0.0",
   "description": "翻译工具函数，支持有道，谷歌",
   "publishConfig": {

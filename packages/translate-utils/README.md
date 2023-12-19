@@ -1,11 +1,11 @@
-# @ifreeovo/translate-utils
+# @xbd/translate-utils
 
 一个翻译工具函数库。支持有道，谷歌。
 
 ## install
 
 ```
-npm i @ifreeovo/translate-utils
+npm i @xbd/translate-utils
 ```
 
 ## api

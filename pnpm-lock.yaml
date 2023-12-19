@@ -112,7 +112,7 @@ importers:
         version: 7.20.0
       '@ifreeovo/translate-utils':
         specifier: ^1.1.0
-        version: link:../translate-utils
+        version: 1.1.0
       '@types/commander':
         specifier: ^2.12.2
         version: 2.12.2
@@ -1101,6 +1101,19 @@ packages:
   /@humanwhocodes/object-schema@1.2.1:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
+
+  /@ifreeovo/translate-utils@1.1.0:
+    resolution: {integrity: sha512-TOyRxvlbH6wvx5At2Ge4DAKnQp7SpCHaYHmrVS5QfGpk0LcBMAGRDo670wB3ml6RJ7C1KhtKx8lHCEkZiDXnRA==}
+    dependencies:
+      '@vitalets/google-translate-api': 9.0.0
+      got: 11.8.5
+      md5: 2.3.0
+      proxy-agent: 5.0.0
+      qs: 6.11.0
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
+    dev: false
 
   /@jridgewell/gen-mapping@0.1.1:
     resolution: {integrity: sha512-sQXCasFk+U8lWYEe66WxRDOE9PjVz4vSM51fTu3Hw+ClTpUSQb718772vH3pyS5pShp6lvQM7SxgIDXXXmOX7w==}
