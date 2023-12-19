@@ -1,4 +1,5 @@
 {
+  "name": "@xbd/i18n-cli",
   "private": true,
   "version": "1.0.0",
   "description": "提取项目里的中文，并替换为i18n函数",
@@ -51,6 +52,5 @@
     "commitizen": {
       "path": "cz-git"
     }
-  },
-  "name": ""
+  }
 }
